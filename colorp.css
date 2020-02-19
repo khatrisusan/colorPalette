@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.colorContainer1, .colorContainer2, .colorContainer3, .colorContainer4, .colorContainer5{
+    width:200px;
+    height: 200px;
+    border: 1px solid #000;
+    margin-left: 1vw;
+}
+main{
+    display: flex;
+    align-items: flex-end;
+}
