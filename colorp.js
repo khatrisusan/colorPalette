@@ -110,16 +110,16 @@ else if (type = monochromatic){
     colorMonochromatic(h,s,l);
 }
 else if(type = triad){
-    colorTriad();
+    colorTriad(h,s,l);
 }
 else if(type = complementary){
-    colorComplementary();
+    colorComplementary(h,s,l);
 }
 else if(type = compound){
-    colorCompound();
+    colorCompound(h,s,l);
 }
 else if(type=shades){
-    colorShades();
+    colorShades(h,s,l);
 }
 else{//Do analogous
     colorAnalogous();
@@ -133,6 +133,9 @@ function colorAnalogous(h, s, l){
     console.log("colorAnalogous");
     console.log(h,s,l)
   // new hew values;
+   /* 
+      ah means analogous-Hue 
+      */
     let ah1 = h-30;
     let ah2 =  h-15;
     let ah4 = h +15;
@@ -150,20 +153,96 @@ function colorAnalogous(h, s, l){
 function colorMonochromatic(h,s,l){
     console.log("should show monoColor")
     console.log(h,s,l);
+     /* 
+      moreS means more saturation, lessL means less lightness
+      */
+    // More S, More L, Less S & less L
+    let moreS, moreL, lessS, lessL;
+    moreS = 90;
+    moreL = 90;
+    lessS = 20;
+    lessL = 20;
+
+    document.querySelector(".colorContainer1").style.backgroundColor = (`hsl(${h}, ${moreS}%, ${l}%)`);
+    document.querySelector(".colorContainer2").style.backgroundColor = (`hsl(${h}, ${s}%, ${moreL}%)`);
+    document.querySelector(".colorContainer4").style.backgroundColor = (`hsl(${h}, ${lessS}%, ${l}%)`);
+    document.querySelector(".colorContainer5").style.backgroundColor = (`hsl(${h}, ${s}%, ${lessL}%)`);
 }
 
 //Triad
 //Two colors are shifted 60 or 120 degrees from the base. You decide what to do with the two remaining colors. Usually also shifting them, and adjusting the L is prefered.
-function colorTriad(){}
+function colorTriad(h,s,l){
+    //shift hue 60 degrees apart;
+      // new hew values;
+      /* 
+      th means triad-Hue 
+      */
+      let th1 = h-60;
+      let th2 =  h-60;
+      let th4 = h +60;
+      let th5 = h+60;
+      console.log(h,s,l)
+  
+        document.querySelector(".colorContainer1").style.backgroundColor = (`hsl(${th1}, ${s}%, ${l}%)`);
+        document.querySelector(".colorContainer2").style.backgroundColor = (`hsl(${th2}, ${s}%, ${l}%)`);
+        document.querySelector(".colorContainer4").style.backgroundColor = (`hsl(${th4}, ${s}%, ${l}%)`);
+        document.querySelector(".colorContainer5").style.backgroundColor = (`hsl(${th5}, ${s}%, ${l}%)`);
+}
 
 //Complementary
 //One color is at 180 degrees from the base. You decide how to handle the other three!
-function colorComplementary(){}
+function colorComplementary(h,s,l){
+    /* 
+    new hue should be + 180;
+    ch means complementary Hue
+     */
+    let ch1 = h-90;
+    let ch2 =  h-135;
+    let ch4 = h +180;
+    let ch5 = h+135;
+    console.log(h,s,l)
+
+      document.querySelector(".colorContainer1").style.backgroundColor = (`hsl(${ch1}, ${s}%, ${l}%)`);
+      document.querySelector(".colorContainer2").style.backgroundColor = (`hsl(${ch2}, ${s}%, ${l}%)`);
+      document.querySelector(".colorContainer4").style.backgroundColor = (`hsl(${ch4}, ${s}%, ${l}%)`);
+      document.querySelector(".colorContainer5").style.backgroundColor = (`hsl(${ch5}, ${s}%, ${l}%)`);
+
+}
 
 //Compound
 //A combination of complementary and analogous - you decide how many colors are complementary, and how many are analogous
-function colorCompound(){}
+function colorCompound(h,s,l){
+    //2 complementry & 2 analogous
+    let comp1 = h+180;
+    let comp2 =  h-180;
+    //comp means hue changes 180
+    let ana4 = h +15;
+    let ana5 = h+30;
+    //ana means hue changes lil bit
+    console.log(h,s,l)
+
+      document.querySelector(".colorContainer1").style.backgroundColor = (`hsl(${comp1}, ${s}%, ${l}%)`);
+      document.querySelector(".colorContainer2").style.backgroundColor = (`hsl(${comp2}, ${s}%, ${l}%)`);
+      document.querySelector(".colorContainer4").style.backgroundColor = (`hsl(${ana4}, ${s}%, ${l}%)`);
+      document.querySelector(".colorContainer5").style.backgroundColor = (`hsl(${ana5}, ${s}%, ${l}%)`);
+
+
+}
 
 //Shades
 //H is kept constant, a so is S, but L varies for each color.
-function colorShades(){}
+function colorShades(h,s,l){
+   /*
+     sl means shades lightness 
+     */
+    let sl1 = 20;
+    let sl2 =  40;
+    let sl4 = 60;
+    let sl5 = 80;
+      console.log(h,s,l)
+  
+        document.querySelector(".colorContainer1").style.backgroundColor = (`hsl(${h}, ${s}%, ${sl1}%)`);
+        document.querySelector(".colorContainer2").style.backgroundColor = (`hsl(${h}, ${s}%, ${sl2}%)`);
+        document.querySelector(".colorContainer4").style.backgroundColor = (`hsl(${h}, ${s}%, ${sl4}%)`);
+        document.querySelector(".colorContainer5").style.backgroundColor = (`hsl(${h}, ${s}%, ${sl5}%)`);
+}
