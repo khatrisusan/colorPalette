@@ -21,7 +21,7 @@ function addColor(){
     console.log(`rgb(${r}, ${g}, ${b})`);
     let rgbValue = (`rgb(${r}, ${g}, ${b})`);
   rgb.textContent = rgbValue;
-  hslmine(4,3,b);
+  hslmine(r,g,b);
   }
   /* 
   
@@ -75,13 +75,20 @@ function addColor(){
   s *= 100;
   l *= 100;
   
-  console.log("hsl(%f,%f%,%f%)", h, s, l); // just for testing
+  //return("hsl(%f,%f%,%f%)", h, s, l); // just for testing
   document.querySelector(".hsl3").textContent=(`hsl(${Math.round(h)}, ${Math.round(s)}, ${Math.round(l)})`);
+  colorAnalogous(h,s,l);
+  colorMonochromatic(h,s,l);
+  colorTriad(h,s,l);
+  colorComplementary(h,s,l);
+  colorCompound(h,s,l);
+  colorShades(h,s,l);
+
   }
   let type;
   let e;
   changeValue();
-  colorAnalogous();
+
  function changeValue(){
      // initially it should behave as analogous so call function colorAnalogous()
     e = document.getElementById("types");
@@ -89,19 +96,18 @@ function addColor(){
      let selectedOption = document.querySelector("#types");
      selectedOption.addEventListener("change", findChange);
      console.log(type);
-     colorAnalogous();
- }
+ 
  function findChange(type){
     e = document.getElementById("types");
      type = e.options[e.selectedIndex].value;
     console.log(type);
 // DO BUNCH OF IF STATEMENTS....
-
+let analogous, monochromatic, triad, complementary, compound, shades;
 if (type = analogous){
-    colorAnalogous();
+    colorAnalogous(h, s, l);
 }
 else if (type = monochromatic){
-    colorMonochromatic();
+    colorMonochromatic(h,s,l);
 }
 else if(type = triad){
     colorTriad();
@@ -115,18 +121,36 @@ else if(type = compound){
 else if(type=shades){
     colorShades();
 }
-else{//Do nothing
+else{//Do analogous
+    colorAnalogous();
 }
 
  }
-
+}
   //Analogous
 //H is shifted a few degrees for each color. S and L are kept constant
-function colorAnalogous(){}
+function colorAnalogous(h, s, l){
+    console.log("colorAnalogous");
+    console.log(h,s,l)
+  // new hew values;
+    let ah1 = h-30;
+    let ah2 =  h-15;
+    let ah4 = h +15;
+    let ah5 = h+30;
+    console.log(h,s,l)
+
+      document.querySelector(".colorContainer1").style.backgroundColor = (`hsl(${ah1}, ${s}%, ${l}%)`);
+      document.querySelector(".colorContainer2").style.backgroundColor = (`hsl(${ah2}, ${s}%, ${l}%)`);
+      document.querySelector(".colorContainer4").style.backgroundColor = (`hsl(${ah4}, ${s}%, ${l}%)`);
+      document.querySelector(".colorContainer5").style.backgroundColor = (`hsl(${ah5}, ${s}%, ${l}%)`);
+}
 
 //Monochromatic
 //H is kept constant, each color has either more S, less S, more L or less L (only one change on each color).
-function colorMonochromatic(){}
+function colorMonochromatic(h,s,l){
+    console.log("should show monoColor")
+    console.log(h,s,l);
+}
 
 //Triad
 //Two colors are shifted 60 or 120 degrees from the base. You decide what to do with the two remaining colors. Usually also shifting them, and adjusting the L is prefered.
