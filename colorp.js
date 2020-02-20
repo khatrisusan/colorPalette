@@ -78,4 +78,68 @@ function addColor(){
   console.log("hsl(%f,%f%,%f%)", h, s, l); // just for testing
   document.querySelector(".hsl3").textContent=(`hsl(${Math.round(h)}, ${Math.round(s)}, ${Math.round(l)})`);
   }
-  
+  let type;
+  let e;
+  changeValue();
+  colorAnalogous();
+ function changeValue(){
+     // initially it should behave as analogous so call function colorAnalogous()
+    e = document.getElementById("types");
+    type = e.options[e.selectedIndex].value;
+     let selectedOption = document.querySelector("#types");
+     selectedOption.addEventListener("change", findChange);
+     console.log(type);
+     colorAnalogous();
+ }
+ function findChange(type){
+    e = document.getElementById("types");
+     type = e.options[e.selectedIndex].value;
+    console.log(type);
+// DO BUNCH OF IF STATEMENTS....
+
+if (type = analogous){
+    colorAnalogous();
+}
+else if (type = monochromatic){
+    colorMonochromatic();
+}
+else if(type = triad){
+    colorTriad();
+}
+else if(type = complementary){
+    colorComplementary();
+}
+else if(type = compound){
+    colorCompound();
+}
+else if(type=shades){
+    colorShades();
+}
+else{//Do nothing
+}
+
+ }
+
+  //Analogous
+//H is shifted a few degrees for each color. S and L are kept constant
+function colorAnalogous(){}
+
+//Monochromatic
+//H is kept constant, each color has either more S, less S, more L or less L (only one change on each color).
+function colorMonochromatic(){}
+
+//Triad
+//Two colors are shifted 60 or 120 degrees from the base. You decide what to do with the two remaining colors. Usually also shifting them, and adjusting the L is prefered.
+function colorTriad(){}
+
+//Complementary
+//One color is at 180 degrees from the base. You decide how to handle the other three!
+function colorComplementary(){}
+
+//Compound
+//A combination of complementary and analogous - you decide how many colors are complementary, and how many are analogous
+function colorCompound(){}
+
+//Shades
+//H is kept constant, a so is S, but L varies for each color.
+function colorShades(){}
